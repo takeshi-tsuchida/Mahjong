@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Event;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +32,7 @@ class EventsController extends Controller
             return $event->id;
         });
 
-        return redirect("events.{$event_id}.edit");
+        return redirect("/mahjong/events/{$event_id}/edit");
     }
 
     public function getEdit(int $event_id)
@@ -39,5 +40,19 @@ class EventsController extends Controller
         $event = Event::getDetailById($event_id);
 
         return view('events.edit',compact($event));
+    }
+
+    public function postEdit(Request $request, int $event_id)
+    {
+        $inputs = $request::all();
+        unset($inputs['_token']);
+
+        DB::transaction( function () use ($inputs, $event_id) {
+            $event = (new Event()) -> findOrFail($event_id);
+            $event->update($inputs);
+            return;
+        });
+
+        return redirect("/mahjong/events/{$event_id}/edit");
     }
 }
