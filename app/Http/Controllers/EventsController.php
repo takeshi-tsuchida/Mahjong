@@ -24,13 +24,20 @@ class EventsController extends Controller
         $inputs = $request->all();
         unset($inputs['_token']);
 
-        $event_id = DB::transaction( function ($inputs){
-            $event = new Event;
-            $event = $inputs;
+        $event_id = DB::transaction( function () use ($inputs){
+            $event = new Event($inputs);
             dd($event);
-            $event = $event->save();
+            $event->save();
             return $event->id;
         });
-        dd($event_id);
+
+        return redirect("events.{$event_id}.edit");
+    }
+
+    public function getEdit(int $event_id)
+    {
+        $event = Event::getDetailById($event_id);
+
+        return view('events.edit',compact($event));
     }
 }
