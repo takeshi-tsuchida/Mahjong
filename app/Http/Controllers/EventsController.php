@@ -8,11 +8,19 @@ use App\Event;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpKernel\EventListener\SaveSessionListener;
 
+/**
+ * 募集に関するコントローラクラス
+ * @package App\Http\Controllers
+ */
 class EventsController extends Controller
 {
+    /**
+     * インデックスページ表示アクション
+     * @return \Illuminate\Http\RedirectResponse リダイレクトインスタンス
+     */
     public function getIndex()
     {
-        return view('events.index');
+        return redirect('events.index');
     }
 
     public function getCreate()

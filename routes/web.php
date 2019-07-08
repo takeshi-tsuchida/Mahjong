@@ -21,5 +21,7 @@ Route::prefix('/mahjong')->group(function(){
         Route::get('/','EventsController@getIndex');
         Route::get('/create','EventsController@getCreate');
         Route::post('/create','EventsController@postCreate');
+        Route::get('/edit','EventController@getEdit');
+        Route::post('/edit','EventController@postEdit');
     });
 });

@@ -14,7 +14,10 @@
         </tr>
         <tr>
             <td><b>地域：</b></td>
-            <td><input type="text" name="area"></td>
+            <select name="area">
+                <option value="1">千代田区</option>
+                <option value="2">中央区</option>
+            </select>
         </tr>
         <tr>
             <td><b>場所：</b></td>
