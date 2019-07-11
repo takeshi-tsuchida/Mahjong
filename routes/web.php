@@ -14,7 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::prefix('/mahjong')->group(function(){
+Route::prefix('/set')->group(function(){
+
+    Route::get('/','SetController@getIndex');
+    Route::get('/create','')
     
     //セット募集掲示板
     Route::prefix('/events')->group(function(){
