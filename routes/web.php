@@ -14,17 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::prefix('/set')->group(function(){
+Route::prefix('/board')->group(function(){
 
-    Route::get('/','SetController@getIndex');
-    Route::get('/create','')
-    
-    //セット募集掲示板
-    Route::prefix('/events')->group(function(){
-        Route::get('/','EventsController@getIndex');
-        Route::get('/create','EventsController@getCreate');
-        Route::post('/create','EventsController@postCreate');
-        Route::get('/edit','EventController@getEdit');
-        Route::post('/edit','EventController@postEdit');
-    });
+    Route::get('/','BoardController@getIndex');
+    Route::get('/create','BoardController@getCreate');
+    Route::post('/create','BoardController@postCreate');
+    Route::get('/detail','BoardController@getEdit');
+    Route::post('/edit','BoardController@postEdit');
 });
